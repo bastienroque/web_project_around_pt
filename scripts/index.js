@@ -55,3 +55,60 @@ function handleProfileFormSubmit(evt) {
 }
 
 editProfileModal.addEventListener("submit", handleProfileFormSubmit);
+
+function getCardElement (name = "Lugar sem nome", link = "./images/placeholder.jpg") {
+    const cardTemplate = document.querySelector("#card-element").content.cloneNode(true);
+    const cardElement = cardTemplate.querySelector(".card");
+
+    const cardName = cardElement.querySelector(".card__title");
+    cardName.textContent = name;
+    const cardLink = cardElement.querySelector(".card__image");
+    cardLink.src = link;
+    cardLink.alt = name;
+
+    const cardLikeBtn = cardElement.querySelector(".card__like-button");
+    cardLikeBtn.addEventListener("click", function () {
+        cardLikeBtn.classList.toggle("card__like-button_is-active");
+    });
+
+    const cardDeleteBtn = cardElement.querySelector(".card__delete-button");
+    cardDeleteBtn.addEventListener("click", function () {
+        cardElement.remove();
+    });
+
+    const imagePopup = document.querySelector("#image-popup")
+    const imageDescription = imagePopup.querySelector(".popup__image");
+    const imageCaption = imagePopup.querySelector(".popup__caption");
+    cardLink.addEventListener("click", function () {
+        imagePopup.classList.add("popup_is-opened");
+        imageDescription.src = link;
+        imageDescription.alt = name;
+        imageCaption.textContent = name;
+    });
+
+    return cardElement;
+};
+
+popupCloseBtn.addEventListener("click", () => {
+    closeModal(editCardModal);
+});
+
+const cardsList = document.querySelector(".cards__list");
+
+function renderCard (name, link, cardsList) {
+    const card = getCardElement(name, link);
+    cardsList.append(card);
+};
+
+initialCards.forEach((card) => {
+  renderCard(card.name, card.link, cardsList);
+});
+
+const editCardModal = document.querySelector("#new-card-popup");
+
+function handleCardFormSubmit(event) {
+    event.preventDefault();
+    closeModal(editCardModal);
+}
+
+editCardModal.addEventListener("submit", handleCardFormSubmit);
