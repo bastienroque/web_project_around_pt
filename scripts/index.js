@@ -127,7 +127,7 @@ function getCardElement(
 
 function renderCard(name, link, cardsList) {
   const card = getCardElement(name, link);
-  cardsList.append(card);
+  cardsList.prepend(card);
 }
 
 initialCards.forEach((card) => {
