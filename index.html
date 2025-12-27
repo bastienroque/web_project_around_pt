@@ -38,11 +38,7 @@
           <ul class="cards__list">
             <template id="card-element">
               <li class="card">
-                <img
-                  class="card__image"
-                  src=""
-                  alt=""
-                />
+                <img class="card__image" src="" alt="" />
                 <button
                   aria-label="Excluir cartão"
                   class="card__delete-button"
@@ -57,7 +53,7 @@
                   ></button>
                 </div>
               </li>
-            </template>            
+            </template>
           </ul>
         </section>
       </main>
@@ -72,19 +68,33 @@
             type="button"
           ></button>
           <h3 class="popup__title">Editar perfil</h3>
-          <form class="popup__form" id="edit-profile-form">
+          <form class="popup__form" id="edit-profile-form" name="profileForm">
             <input
               class="popup__input popup__input_type_name"
               name="name"
+              id="name"
               placeholder="Nome"
               type="text"
+              minlength="2"
+              maxlength="40"
+              required
             />
+            <span class="name-input-error popup__input-error"
+              >Este campo é obrigatório.</span
+            >
             <input
               class="popup__input popup__input_type_description"
               name="description"
+              id="description"
               placeholder="Sobre mim"
               type="text"
+              minlength="2"
+              maxlength="200"
+              required
             />
+            <span class="description-input-error popup__input-error"
+              >Este campo é obrigatório.</span
+            >
             <button class="button popup__button" type="submit">Salvar</button>
           </form>
         </div>
@@ -97,21 +107,31 @@
             type="button"
           ></button>
           <h3 class="popup__title">Novo local</h3>
-          <form class="popup__form" id="new-card-form">
+          <form class="popup__form" id="new-card-form" name="cardForm">
             <input
               class="popup__input popup__input_type_card-name"
               name="place-name"
+              id="place-name"
               placeholder="Título"
+              minlength="2"
+              maxlength="30"
               required
               type="text"
             />
+            <span class="place-name-input-error popup__input-error"
+              >Este campo é obrigatório.</span
+            >
             <input
               class="popup__input popup__input_type_url"
               name="link"
+              id="link"
               placeholder="Link de Imagem"
               required
               type="url"
             />
+            <span class="link-input-error popup__input-error"
+              >Este campo é obrigatório.</span
+            >
             <button class="button popup__button" type="submit">Criar</button>
           </form>
         </div>
