@@ -10,6 +10,8 @@ const profileDescriptionInput = editProfileModal.querySelector(
   ".popup__input_type_description"
 );
 
+const popups = document.querySelectorAll(".popup");
+
 function fillProfileForm() {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
@@ -33,3 +35,26 @@ function handleProfileFormSubmit(evt) {
 }
 editProfileBtn.addEventListener("click", handleOpenEditModal);
 editProfileModal.addEventListener("submit", handleProfileFormSubmit);
+
+function closePopupOnOverlayClick(popup) {
+  popup.addEventListener("mousedown", (event) => {
+    if (event.target === popup) {
+      closeModal(popup);
+    }
+  });
+}
+
+popups.forEach((popup) => {
+  closePopupOnOverlayClick(popup);
+});
+
+function closePopupOnEsc() {
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      const openedPopup = document.querySelector(".popup_is-opened");
+      if (openedPopup) {
+        closeModal(openedPopup);
+      }
+    }
+  });
+}
