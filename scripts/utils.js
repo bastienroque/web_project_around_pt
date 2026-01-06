@@ -39,28 +39,3 @@ editProfilePopup.setEventListeners();
 editProfileBtn.addEventListener("click", () => {
   editProfilePopup.open();
 });
-
-function closePopupOnOverlayClick(popup) {
-  popup.addEventListener("mousedown", (event) => {
-    if (event.target === popup) {
-      closeModal(popup);
-    }
-  });
-}
-
-const popups = document.querySelectorAll(".popup");
-
-popups.forEach((popup) => {
-  closePopupOnOverlayClick(popup);
-});
-
-function closePopupOnEsc() {
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      const openedPopup = document.querySelector(".popup_is-opened");
-      if (openedPopup) {
-        closeModal(openedPopup);
-      }
-    }
-  });
-}

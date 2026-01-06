@@ -66,17 +66,4 @@ class FormValidator {
   }
 }
 
-// Usage
-const validationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inputErrorClass: "popup__input_type_error",
-  errorActiveClass: "popup__input-error_active",
-};
-
-// Initialize validation for all forms
-document.querySelectorAll(validationConfig.formSelector).forEach((form) => {
-  const validator = new FormValidator(form, validationConfig);
-  validator.enableValidation();
-});
+export { FormValidator };
