@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   padding: 40px 0 32px;
+  position: relative;
 }
 
 .profile__info {
@@ -44,6 +45,27 @@
   object-fit: cover;
   background-position: center;
   margin-right: 29px;
+}
+
+.profile__avatar-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  position: absolute;
+  left: 94px; /* position over bottom-right of avatar */
+  top: 82px;
+  background: transparent url("../images/edit-icon.svg") center no-repeat;
+  background-size: 14px 14px;
+  border: 2px solid #fff;
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  cursor: pointer;
+}
+
+.profile:hover .profile__avatar-button,
+.profile__avatar-button:focus {
+  opacity: 1;
 }
 
 .profile__add-button {

@@ -19,6 +19,7 @@
       <main class="content">
         <section class="profile page__section">
           <img class="profile__image" src="./images/avatar.jpg" alt="Avatar" />
+          <button aria-label="Editar avatar" class="profile__avatar-button" type="button"></button>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -99,6 +100,30 @@
           </form>
         </div>
       </div>
+      <div class="popup" id="avatar-popup">
+        <div class="popup__content">
+          <button
+            aria-label="Fechar pop-up"
+            class="popup__close"
+            type="button"
+          ></button>
+          <h3 class="popup__title">Atualizar avatar</h3>
+          <form class="popup__form" id="avatar-form" name="avatarForm">
+            <input
+              class="popup__input popup__input_type_url"
+              name="avatar"
+              id="avatar"
+              placeholder="Link da nova foto"
+              required
+              type="url"
+            />
+            <span class="avatar-input-error popup__input-error"
+              >Este campo é obrigatório.</span
+            >
+            <button class="button popup__button" type="submit">Salvar</button>
+          </form>
+        </div>
+      </div>
       <div class="popup" id="new-card-popup">
         <div class="popup__content">
           <button
@@ -147,7 +172,19 @@
           <p class="popup__caption"></p>
         </div>
       </div>
+      <div class="popup" id="confirmation-popup">
+        <div class="popup__content popup__content_content_confirmation">
+          <button
+            aria-label="Fechar pop-up"
+            class="popup__close"
+            type="button"
+          ></button>
+          <h3 class="popup__title">Tem certeza?</h3>
+          <button class="button popup__button popup__button_type_confirm" type="submit">Sim</button>
+        </div>
+      </div>
     </div>
+    <script type="module" src="./components/Api.js"></script>
     <script type="module" src="./components/utils.js"></script>
     <script type="module" src="./components//Card.js"></script>
     <script type="module" src="./components//FormValidator.js"></script>
