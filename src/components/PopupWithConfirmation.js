@@ -1,4 +1,4 @@
-import { Popup } from "./Popup.js";
+import { Popup } from "./src/Popup.js";
 
 export class PopupWithConfirmation extends Popup {
   constructor(popupSelector) {
