@@ -7,33 +7,6 @@ import { UserInfo } from "../components/UserInfo.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { api } from "../components/Api.js";
 
-const initialCards = [
-  {
-    name: "Vale de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-  },
-  {
-    name: "Montanhas Carecas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
-  },
-  {
-    name: "Parque Nacional Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
-  },
-];
-
 const editProfileBtn = document.querySelector(".profile__edit-button");
 const addCardBtn = document.querySelector(".profile__add-button");
 
@@ -84,34 +57,21 @@ const cardSection = new Section(
       const card = new Card(
         item,
         "#card-element",
-        (cardData) => {
-          imagePopup.open(cardData);
-        },
+        (cardData) => imagePopup.open(cardData),
         (cardElement) => {
           confirmationPopup.setSubmitAction(() => {
-            const cardId = cardElement.dataset.cardId;
-            if (cardId) {
-              api
-                .deleteCard(cardId)
-                .then(() => {
-                  cardElement.remove();
-                  confirmationPopup.close();
-                })
-                .catch((err) => {
-                  console.error("Failed to delete card:", err);
-                  confirmationPopup.close();
-                });
-            } else {
-              // fallback for cards without an id (local-only)
-              cardElement.remove();
-              confirmationPopup.close();
-            }
+            api.deleteCard(item._id)
+              .then(() => {
+                cardElement.remove();
+                confirmationPopup.close();
+              })
+              .catch(console.error);
           });
           confirmationPopup.open();
         }
       );
 
-      cardSection.addItem(card.generateCard());
+      return card.generateCard();
     },
   },
   ".cards__list"
@@ -167,18 +127,21 @@ editProfileBtn.addEventListener("click", () => {
 const addCardPopup = new PopupWithForm(
   "#new-card-popup",
   (formData) => {
-    const card = new Card(
-      {
-        name: formData["place-name"],
-        link: formData.link,
-      },
-      "#card-element",
-      (cardData) => {
-        imagePopup.open(cardData);
-      }
-    );
+    return api.addCard({
+      name: formData["place-name"],
+      link: formData.link,
+      id: formData.id,
+    }).then((cardData) => {
+      const card = new Card(
+        cardData,
+        "#card-element",
+        (data) => {
+          imagePopup.open(data);
+        }
+      );
 
-    cardSection.addItem(card.generateCard());
+      cardSection.addItem(card.generateCard());
+    });
   }
 );
 
