@@ -1,14 +1,12 @@
 # Tripleten web_project_around_pt
 
-# Funcionalidades
+## Features
+- Uses JavaScript functions to power the page
+- Refactored the original code to use object-oriented programming (OOP)
+- Allows users to add locations, as well as remove or like them individually
+- Users can also edit their profile information (name and description)
+- Includes custom form validation and connection to the TripleTen API
 
-Utilização de funções Javascript para o funcionamento da página
-Refatoração do código originial agora utilizando o conceito de OOP
-Permitindo a adição de locais, assim como removê-los ou curti-los individualmente
-Também é possível alterar as informações de perfil (nome e descrição)
-Inclui validação de formulários personalizada e conexão com API da TripleTen
 
-
-# Link para GitHub Pages
-
+## Link to GitHub Pages
 https://bastienroque.github.io/web_project_around_pt
